@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="TXTextControl.Web" Version="30.0.1000.500" />
+  </ItemGroup>
+
 </Project>
