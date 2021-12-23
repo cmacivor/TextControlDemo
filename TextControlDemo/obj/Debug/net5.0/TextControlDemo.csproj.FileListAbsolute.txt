@@ -53,6 +53,4 @@ C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\TXTextControl.Web.dll
-C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\obj\Debug\net5.0\NuGet\0621610E5861CC5DB5CC9DF775C1B898EEEA2529\TXTextControl.Web\30.0.1000.500\Controllers\TXWebSocketController.cs
-C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\obj\Debug\net5.0\NuGet\0621610E5861CC5DB5CC9DF775C1B898EEEA2529\TXTextControl.Web\30.0.1000.500\Controllers\TXWebSocketController.vb
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\obj\Debug\net5.0\TextControlDemo.MvcApplicationPartsAssemblyInfo.cs
