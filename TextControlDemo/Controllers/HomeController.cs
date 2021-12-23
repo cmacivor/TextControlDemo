@@ -30,7 +30,18 @@ namespace TextControlDemo.Controllers
         public IActionResult DocumentEditor()
         {
             var webRoot = _env.WebRootPath;
-            var file = System.IO.Path.Combine(webRoot, "test.txt");
+
+            //var file = System.IO.Path.Combine(webRoot, "test.txt");
+            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol");
+            var sampleDb = System.IO.Path.Combine(webRoot, "textcontrol", "sample_db.xml");
+            var invoice = System.IO.Path.Combine(webRoot, "textcontrol", "invoice.docx");
+
+
+            ViewData["sampleDb"] = sampleDb;
+            ViewData["invoice"] = invoice;
+            ViewData["documentDirectory"] = documentDirectory;
+
+
 
             return View();
         }

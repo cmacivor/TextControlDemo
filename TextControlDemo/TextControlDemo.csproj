@@ -6,7 +6,103 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TXTextControl.Web" Version="30.0.1000.500" />
+    <None Remove="App_Data\invoice.docx" />
+    <None Remove="licenses.licx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\invoice.docx">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="TXDocumentServer">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXDocumentServer.dll</HintPath>
+    </Reference>
+    <Reference Include="TXDrawing">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXDrawing.dll</HintPath>
+    </Reference>
+    <Reference Include="txic">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txic.dll</HintPath>
+    </Reference>
+    <Reference Include="txkernel">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txkernel.dll</HintPath>
+    </Reference>
+    <Reference Include="txpdf">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txpdf.dll</HintPath>
+    </Reference>
+    <Reference Include="TXSpell, Version=8.0.700.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Spell 8.0 .NET for Windows Forms\Assembly\TXSpell.dll</HintPath>
+    </Reference>
+    <Reference Include="TXTextControl">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXTextControl.dll</HintPath>
+    </Reference>
+    <Reference Include="TXTextControl.Server">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXTextControl.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="txtools">
+      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txtools.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tx29_css.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_doc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_dox.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_htm.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_pdf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_rtf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_xlx.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tx29_xml.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dictionaries\en_US.aff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dictionaries\en_US.dic">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SpellCheck\HyphenationLists\hyph_en_US.dic">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SpellCheck\LanguageRecognition\languageRecognition.resources">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SpellCheck\SynonymLists\th_en_US_v2.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SpellCheck\SynonymLists\th_en_US_v2.idx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SpellCheck\Dictionaries\en_US.aff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SpellCheck\Dictionaries\en_US.dic">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TXTextControl.Web" Version="29.0.902.500" />
   </ItemGroup>
 
 

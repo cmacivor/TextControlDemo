@@ -1,11 +1,14 @@
-
+@using TXTextControl.Web
+@using TXTextControl.Web.MVC
 @{
     ViewData["Title"] = "Document Editor";
 
 }
 
-
-
 <div class="text-center">
     <h1 class="display-4">place holder for Text Control</h1>
 </div>
+@Html.TXTextControl().TextControl(settings =>
+{
+    settings.Dock = DockStyle.Window;
+}).LoadText("App_Data/invoice.docx", StreamType.WordprocessingML).Render()

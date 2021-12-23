@@ -42,7 +42,7 @@
           "dependencies": {
             "TXTextControl.Web": {
               "target": "Package",
-              "version": "[30.0.1000.500, )"
+              "version": "[29.0.902.500, )"
             }
           },
           "imports": [
