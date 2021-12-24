@@ -56,5 +56,23 @@ namespace TextControlDemo.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult CreatePDF([FromBody] TransferDocument document)
+        {
+
+            // create a ServerTextControl
+            using TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl();
+
+            tx.Create();
+            tx.Load(Convert.FromBase64String(document.Document),
+              TXTextControl.BinaryStreamType.InternalUnicodeFormat);
+
+            byte[] bPDF;
+
+            tx.Save(out bPDF, TXTextControl.BinaryStreamType.AdobePDF);
+
+            return Ok(bPDF);
+        }
     }
 }
