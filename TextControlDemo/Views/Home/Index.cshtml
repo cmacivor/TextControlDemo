@@ -1,68 +1,123 @@
-﻿@using TXTextControl.Web.MVC
+﻿@using TXTextControl.Web 
+@using TXTextControl.Web.MVC
 
 @Html.TXTextControl().TextControl().Render()
 
 <input type="button" value="Create PDF" onclick="createPDF()" />
+<input onclick="SaveToController('test.docx')" id="btnSave" type="button" value="Save" />
+<input onclick="LoadFromController('test.docx')" id="btnLoad" type="button" value="Load" />
 
 @section Scripts {
     <script type="text/javascript">
 
-	        // converts base64 string back to a blob
-	        function base64ToBlob(base64) {
-	            var binary = atob(base64.replace(/\s/g, ''));
-	            var len = binary.length;
-	            var buffer = new ArrayBuffer(len);
-	            var view = new Uint8Array(buffer);
+        // converts base64 string back to a blob
+        function base64ToBlob(base64) {
+            var binary = atob(base64.replace(/\s/g, ''));
+            var len = binary.length;
+            var buffer = new ArrayBuffer(len);
+            var view = new Uint8Array(buffer);
 
-	            for (var i = 0; i < len; i++) {
-	                view[i] = binary.charCodeAt(i);
-	            }
+            for (var i = 0; i < len; i++) {
+                view[i] = binary.charCodeAt(i);
+            }
 
-	            return view;
-	        }
+            return view;
+        }
 
-	        function createPDF() {
-	            // save the contents of the editor
-	            TXTextControl.saveDocument(TXTextControl.streamType.InternalUnicodeFormat, function (e) {
+        function SaveToController(DocumentName) {
+            TXTextControl.saveDocument(TXTextControl.streamType.InternalUnicodeFormat,
+                function (e) {
+                    console.log(DocumentName)
+                    console.log(e.data)
+                    var serviceURL = "/Home/SaveTemplate";
 
-	                // call the Web API "CreatePDF"
-	                $.ajax({
-	                    type: "POST",
-	                    url: "/Home/CreatePDF?id=123",
-	                    contentType: 'application/json',
-	                    data: JSON.stringify({
-	                        document: e.data
-	                    }),
+                    $.ajax({
+                        type: "POST",
+                        url: serviceURL,
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            DocumentName: DocumentName,
+                            BinaryDocument: e.data
+                        }),
+                        success: successFunc,
+                        error: errorFunc
+                    });
 
-	                    success: successFunc,
-	                    error: errorFunc
-	                });
+                    function successFunc(data, status) {
+                        alert("Document has been saved successfully.");
+                    }
 
-	                function successFunc(data, status) {
-	                    // create a file blob
-	                    var file = new Blob([base64ToBlob(data)], { type: "application/pdf" });
+                    function errorFunc() {
+                        alert('Error');
+                    }
+                });
+        }
 
-	                    // create a temporary link element
-	                    var a = document.createElement("a");
-	                    a.href = URL.createObjectURL(file);
-	                    a.download = "results.pdf";
+        // load the document from the controller and load
+        // it into the TXTextControl.Web
+        function LoadFromController(DocumentName) {
+            var serviceURL = "/Home/LoadTemplate";
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    DocumentName: DocumentName
+                }),
+                success: successFunc,
+                error: errorFunc
+            });
+            function successFunc(data, status) {
+                TXTextControl.loadDocument(TXTextControl.streamType.InternalUnicodeFormat, data);
+            }
+            function errorFunc() {
+                alert('Error');
+            }
 
-	                    // attach to body and click
-	                    document.body.appendChild(a);
-	                    a.click();
+        }
 
-	                    // remove the element
-	                    setTimeout(function () {
-	                        document.body.removeChild(a);
-	                    }, 0);
+        function createPDF() {
+            // save the contents of the editor
+            TXTextControl.saveDocument(TXTextControl.streamType.InternalUnicodeFormat, function (e) {
 
-	                }
+                // call the Web API "CreatePDF"
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/CreatePDF?id=123",
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        document: e.data
+                    }),
 
-	                function errorFunc(xhr, ajaxOptions, thrownError) {
-	                    alert(thrownError);
-	                }
-	            });
-	        }
+                    success: successFunc,
+                    error: errorFunc
+                });
+
+                function successFunc(data, status) {
+                    // create a file blob
+                    var file = new Blob([base64ToBlob(data)], { type: "application/pdf" });
+
+                    // create a temporary link element
+                    var a = document.createElement("a");
+                    a.href = URL.createObjectURL(file);
+                    a.download = "results.pdf";
+
+                    // attach to body and click
+                    document.body.appendChild(a);
+                    a.click();
+
+                    // remove the element
+                    setTimeout(function () {
+                        document.body.removeChild(a);
+                    }, 0);
+
+                }
+
+                function errorFunc(xhr, ajaxOptions, thrownError) {
+                    alert(thrownError);
+                }
+            });
+        }
     </script>
 }
 

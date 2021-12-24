@@ -74,5 +74,52 @@ namespace TextControlDemo.Controllers
 
             return Ok(bPDF);
         }
+
+        [HttpPost]
+        public IActionResult SaveTemplate([FromBody] DocumentViewModel model)
+        {
+            string name = model.DocumentName;
+            byte[] document = Convert.FromBase64String(model.BinaryDocument);
+
+            var webRoot = _env.WebRootPath;
+            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol");
+
+            var fullPath = documentDirectory + model.DocumentName;
+
+            using (TXTextControl.ServerTextControl tx =
+                new TXTextControl.ServerTextControl())
+            {
+                tx.Create();
+                tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
+
+                tx.Save(fullPath,
+                    TXTextControl.StreamType.WordprocessingML);
+            }
+
+            return Json("success");
+        }
+
+        // loads a document into the ServerTextControl and returns the
+        // document as a base64 encoded string
+        [HttpPost]
+        public string LoadTemplate([FromBody] LoadDocumentViewModel model)
+        {
+            byte[] data;
+
+            var webRoot = _env.WebRootPath;
+            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol");
+
+            var fullPath = documentDirectory + model.DocumentName;
+
+            using (TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl())
+            {
+                tx.Create();
+                tx.Load(fullPath, TXTextControl.StreamType.WordprocessingML);
+
+                tx.Save(out data, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
+            }
+
+            return Convert.ToBase64String(data);
+        }
     }
 }
