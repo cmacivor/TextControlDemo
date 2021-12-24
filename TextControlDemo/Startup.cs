@@ -54,9 +54,6 @@ namespace TextControlDemo
             });
 
 
-            // enable local 'App_Data' folder to access local documents
-            AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(env.ContentRootPath, "App_Data"));
-
             // serve static linked files (JavaScript and CSS for the editor)
             app.UseStaticFiles(new StaticFileOptions
             {

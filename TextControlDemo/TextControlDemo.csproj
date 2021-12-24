@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,35 +20,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="licenses.licx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="TXDocumentServer">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXDocumentServer.dll</HintPath>
-    </Reference>
-    <Reference Include="TXDrawing">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXDrawing.dll</HintPath>
-    </Reference>
-    <Reference Include="txic">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txic.dll</HintPath>
-    </Reference>
-    <Reference Include="txkernel">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txkernel.dll</HintPath>
-    </Reference>
-    <Reference Include="txpdf">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txpdf.dll</HintPath>
-    </Reference>
-    <Reference Include="TXSpell, Version=8.0.700.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Spell 8.0 .NET for Windows Forms\Assembly\TXSpell.dll</HintPath>
-    </Reference>
-    <Reference Include="TXTextControl">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXTextControl.dll</HintPath>
-    </Reference>
-    <Reference Include="TXTextControl.Server">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXTextControl.Server.dll</HintPath>
-    </Reference>
-    <Reference Include="txtools">
-      <HintPath>C:\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txtools.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -103,6 +75,27 @@
 
   <ItemGroup>
     <PackageReference Include="TXTextControl.Web" Version="29.0.902.500" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TXDocumentServer">
+      <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXDocumentServer.dll</HintPath>
+    </Reference>
+    <Reference Include="txic">
+      <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txic.dll</HintPath>
+    </Reference>
+    <Reference Include="txkernel">
+      <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txkernel.dll</HintPath>
+    </Reference>
+    <Reference Include="TXTextControl">
+      <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXTextControl.dll</HintPath>
+    </Reference>
+    <Reference Include="TXTextControl.Server">
+      <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\TXTextControl.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="txtools">
+      <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txtools.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 

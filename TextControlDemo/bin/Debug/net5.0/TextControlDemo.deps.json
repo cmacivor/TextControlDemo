@@ -35,11 +35,8 @@
         "dependencies": {
           "TXTextControl.Web": "29.0.902.500",
           "TXDocumentServer": "29.0.1500.500",
-          "TXDrawing": "29.0.500.500",
           "txic": "29.0.1300.500",
           "txkernel": "29.0.2900.500",
-          "txpdf": "29.0.1600.500",
-          "TXSpell": "8.0.700.500",
           "TXTextControl": "29.0.2200.500",
           "TXTextControl.Server": "29.0.1400.500",
           "txtools": "29.0.1200.500",
@@ -1276,22 +1273,6 @@
           "TXDocumentServer.dll": {}
         }
       },
-      "TXDrawing/29.0.500.500": {
-        "runtime": {
-          "TXDrawing.dll": {
-            "assemblyVersion": "29.0.500.500",
-            "fileVersion": "29.0.500.500"
-          }
-        },
-        "resources": {
-          "de/TXDrawing.resources.dll": {
-            "locale": "de"
-          }
-        },
-        "compile": {
-          "TXDrawing.dll": {}
-        }
-      },
       "txic/29.0.1300.500": {
         "runtime": {
           "txic.dll": {
@@ -1312,33 +1293,6 @@
         },
         "compile": {
           "txkernel.dll": {}
-        }
-      },
-      "txpdf/29.0.1600.500": {
-        "runtime": {
-          "txpdf.dll": {
-            "assemblyVersion": "29.0.1600.500",
-            "fileVersion": "29.0.1601.500"
-          }
-        },
-        "compile": {
-          "txpdf.dll": {}
-        }
-      },
-      "TXSpell/8.0.700.500": {
-        "runtime": {
-          "TXSpell.dll": {
-            "assemblyVersion": "8.0.700.500",
-            "fileVersion": "8.0.700.500"
-          }
-        },
-        "resources": {
-          "de/TXSpell.resources.dll": {
-            "locale": "de"
-          }
-        },
-        "compile": {
-          "TXSpell.dll": {}
         }
       },
       "TXTextControl/29.0.2200.500": {
@@ -3868,27 +3822,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "TXDrawing/29.0.500.500": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "txic/29.0.1300.500": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "txkernel/29.0.2900.500": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "txpdf/29.0.1600.500": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "TXSpell/8.0.700.500": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

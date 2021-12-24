@@ -1,8 +1,68 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using TXTextControl.Web.MVC
+
+@Html.TXTextControl().TextControl().Render()
+
+<input type="button" value="Create PDF" onclick="createPDF()" />
+
+@section Scripts {
+    <script type="text/javascript">
+
+	        // converts base64 string back to a blob
+	        function base64ToBlob(base64) {
+	            var binary = atob(base64.replace(/\s/g, ''));
+	            var len = binary.length;
+	            var buffer = new ArrayBuffer(len);
+	            var view = new Uint8Array(buffer);
+
+	            for (var i = 0; i < len; i++) {
+	                view[i] = binary.charCodeAt(i);
+	            }
+
+	            return view;
+	        }
+
+	        function createPDF() {
+	            // save the contents of the editor
+	            TXTextControl.saveDocument(TXTextControl.streamType.InternalUnicodeFormat, function (e) {
+
+	                // call the Web API "CreatePDF"
+	                $.ajax({
+	                    type: "POST",
+	                    url: "/Home/CreatePDF?id=123",
+	                    contentType: 'application/json',
+	                    data: JSON.stringify({
+	                        document: e.data
+	                    }),
+
+	                    success: successFunc,
+	                    error: errorFunc
+	                });
+
+	                function successFunc(data, status) {
+	                    // create a file blob
+	                    var file = new Blob([base64ToBlob(data)], { type: "application/pdf" });
+
+	                    // create a temporary link element
+	                    var a = document.createElement("a");
+	                    a.href = URL.createObjectURL(file);
+	                    a.download = "results.pdf";
+
+	                    // attach to body and click
+	                    document.body.appendChild(a);
+	                    a.click();
+
+	                    // remove the element
+	                    setTimeout(function () {
+	                        document.body.removeChild(a);
+	                    }, 0);
+
+	                }
+
+	                function errorFunc(xhr, ajaxOptions, thrownError) {
+	                    alert(thrownError);
+	                }
+	            });
+	        }
+    </script>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
