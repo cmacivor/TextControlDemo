@@ -87,15 +87,15 @@ namespace TextControlDemo.Controllers
 
             var fullPath = documentDirectory + model.DocumentName;
 
-            var guid = new Guid();
+            var guid = Guid.NewGuid();
 
             using (var connection = new NpgsqlConnection("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo;"))
             {
                 //var insertSql = string.Format(@"INSERT INTO public.Document(Name) VALUES('{0}'", model.DocumentName);
                 //connection.Execute(insertSql);
 
-                string sql = @"INSERT INTO public.""Document"" (""Name"") VALUES(@Name)";
-                connection.Execute(sql, new { Name = model.DocumentName });
+                string sql = @"INSERT INTO public.""Document"" (""Name"", ""UniqueId"") VALUES(@Name, @UniqueId)";
+                connection.Execute(sql, new { Name = model.DocumentName, UniqueId = guid });
 
                 //connection.Execute($"INSERT INTO public.'Document'('Name', 'UniqueId') VALUES({model.DocumentName}, {guid}); ");
             }
