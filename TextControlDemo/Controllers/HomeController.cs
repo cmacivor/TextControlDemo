@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TextControlDemo.Models;
 using Microsoft.AspNetCore.Hosting;
-
+using Npgsql;
+using Dapper;
 
 namespace TextControlDemo.Controllers
 {
@@ -85,6 +86,19 @@ namespace TextControlDemo.Controllers
             var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol");
 
             var fullPath = documentDirectory + model.DocumentName;
+
+            var guid = new Guid();
+
+            using (var connection = new NpgsqlConnection("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo;"))
+            {
+                //var insertSql = string.Format(@"INSERT INTO public.Document(Name) VALUES('{0}'", model.DocumentName);
+                //connection.Execute(insertSql);
+
+                string sql = @"INSERT INTO public.""Document"" (""Name"") VALUES(@Name)";
+                connection.Execute(sql, new { Name = model.DocumentName });
+
+                //connection.Execute($"INSERT INTO public.'Document'('Name', 'UniqueId') VALUES({model.DocumentName}, {guid}); ");
+            }
 
             using (TXTextControl.ServerTextControl tx =
                 new TXTextControl.ServerTextControl())
