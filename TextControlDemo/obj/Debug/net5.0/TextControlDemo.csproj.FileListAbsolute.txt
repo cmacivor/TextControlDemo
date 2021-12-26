@@ -73,3 +73,6 @@ C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\obj\Debug\net5.0\TextControlDemo.dll.licenses
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\TXTextControl.Web\CSS\main.css
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\TXTextControl.Web\JS\tx-min.js
+C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\Dapper.dll
+C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\Npgsql.dll
+C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

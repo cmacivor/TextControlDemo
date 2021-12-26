@@ -4,8 +4,9 @@
 @Html.TXTextControl().TextControl().Render()
 
 <input type="button" value="Create PDF" onclick="createPDF()" />
-<input onclick="SaveToController('test.docx')" id="btnSave" type="button" value="Save" />
-<input onclick="LoadFromController('test.docx')" id="btnLoad" type="button" value="Load" />
+<input type="text" id="txtFileName" placeholder="File name" />
+<input onclick="saveFile()" id="btnSave" type="button" value="Save" />
+<input onclick="loadFile()" id="btnLoad" type="button" value="Load" />
 
 @section Scripts {
     <script type="text/javascript">
@@ -22,6 +23,17 @@
             }
 
             return view;
+        }
+
+        function saveFile() {
+            var fileName = document.getElementById("txtFileName").value;
+
+            SaveToController(fileName);
+        }
+
+        function loadFile() {
+            var fileName = document.getElementById("txtFileName").value;
+            LoadFromController(fileName);
         }
 
         function SaveToController(DocumentName) {
