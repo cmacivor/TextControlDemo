@@ -86,7 +86,10 @@ namespace TextControlDemo.Controllers
             var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol", model.DocumentName);
 
             var guid = Guid.NewGuid();
-
+            //TODO: refactor to repository: https://medium.com/aspnetrun/microservices-using-asp-net-postgresql-dapper-micro-orm-and-docker-container-e9d61a408d2a
+            //TODO: ASP.NET Identity: https://markjohnson.io/articles/asp-net-core-identity-without-entity-framework/
+            //TODO: https://github.com/mark-j/dapper-identity
+            //TODO: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers?view=aspnetcore-3.1
             using (var connection = new NpgsqlConnection("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo;"))
             {
 
@@ -98,7 +101,7 @@ namespace TextControlDemo.Controllers
                 new TXTextControl.ServerTextControl())
             {
                 tx.Create();
-                tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
+                tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);                
 
                 tx.Save(documentDirectory,
                     TXTextControl.StreamType.WordprocessingML);
