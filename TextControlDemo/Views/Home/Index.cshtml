@@ -4,9 +4,7 @@
 @*@Html.TXTextControl().TextControl().Render()*@
 
 <input type="button" value="Create PDF" onclick="createPDF()" />
-<input type="text" id="txtFileName" placeholder="File name" />
 
-<input onclick="loadFile()" id="btnLoad" type="button" value="Load" />
 <!-- Trigger/Open The Modal -->
 <button id="myBtn" >Open Modal</button>
 
@@ -21,9 +19,12 @@
         <div id="editor"></div>
         <div class="modal-footer">
             <h3>Modal Footer</h3>
+            <input type="text" id="txtFileName" placeholder="File name" />
+            <input onclick="loadFile()" id="btnLoad" type="button" value="Load" />
+            <input onclick="saveFile()" id="btnSave" type="button" value="Save" />
         </div>
     </div>
-    <input onclick="saveFile()" id="btnSave" type="button" value="Save" />
+
 </div>
 
 @section Scripts {
