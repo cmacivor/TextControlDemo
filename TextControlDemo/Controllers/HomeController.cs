@@ -83,21 +83,15 @@ namespace TextControlDemo.Controllers
             byte[] document = Convert.FromBase64String(model.BinaryDocument);
 
             var webRoot = _env.WebRootPath;
-            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol");
-
-            var fullPath = documentDirectory + model.DocumentName;
+            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol", model.DocumentName);
 
             var guid = Guid.NewGuid();
 
             using (var connection = new NpgsqlConnection("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo;"))
             {
-                //var insertSql = string.Format(@"INSERT INTO public.Document(Name) VALUES('{0}'", model.DocumentName);
-                //connection.Execute(insertSql);
 
                 string sql = @"INSERT INTO public.""Document"" (""Name"", ""UniqueId"") VALUES(@Name, @UniqueId)";
                 connection.Execute(sql, new { Name = model.DocumentName, UniqueId = guid });
-
-                //connection.Execute($"INSERT INTO public.'Document'('Name', 'UniqueId') VALUES({model.DocumentName}, {guid}); ");
             }
 
             using (TXTextControl.ServerTextControl tx =
@@ -106,7 +100,7 @@ namespace TextControlDemo.Controllers
                 tx.Create();
                 tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
 
-                tx.Save(fullPath,
+                tx.Save(documentDirectory,
                     TXTextControl.StreamType.WordprocessingML);
             }
 
@@ -121,14 +115,12 @@ namespace TextControlDemo.Controllers
             byte[] data;
 
             var webRoot = _env.WebRootPath;
-            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol");
-
-            var fullPath = documentDirectory + model.DocumentName;
+            var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol", model.DocumentName);
 
             using (TXTextControl.ServerTextControl tx = new TXTextControl.ServerTextControl())
             {
                 tx.Create();
-                tx.Load(fullPath, TXTextControl.StreamType.WordprocessingML);
+                tx.Load(documentDirectory, TXTextControl.StreamType.WordprocessingML);
 
                 tx.Save(out data, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
             }
