@@ -76,3 +76,4 @@ C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\Dapper.dll
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\Npgsql.dll
 C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\CraigMacIvor\source\repos\TextControlDemo\TextControlDemo\obj\Debug\net5.0\Razor\Views\Shared\_TextEditorPartial.cshtml.g.cs

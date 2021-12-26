@@ -1,40 +1,39 @@
 ﻿@using TXTextControl.Web
 @using TXTextControl.Web.MVC
 
-@Html.TXTextControl().TextControl().Render()
+@*@Html.TXTextControl().TextControl().Render()*@
 
 <input type="button" value="Create PDF" onclick="createPDF()" />
 <input type="text" id="txtFileName" placeholder="File name" />
-<input onclick="saveFile()" id="btnSave" type="button" value="Save" />
-<input onclick="loadFile()" id="btnLoad" type="button" value="Load" />
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog full_modal-dialog" role="document">
-        <div class="modal-content full_modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
+<input onclick="loadFile()" id="btnLoad" type="button" value="Load" />
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" >Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="editor"></div>
     </div>
+    <input onclick="saveFile()" id="btnSave" type="button" value="Save" />
 </div>
 
 @section Scripts {
     <script type="text/javascript">
+
+           function loadEditor() {
+	        // check, if editor exists and
+	        // closes the WebSocket connection gracefully
+	        // and removes the whole editor from the DOM.
+	        if (typeof TXTextControl !== 'undefined')
+	            TXTextControl.removeFromDom();
+
+	        // load the partial view
+	        $('#editor').load('@Url.Action("EditorPartial")');
+	    }
 
         // converts base64 string back to a blob
         function base64ToBlob(base64) {
@@ -155,6 +154,34 @@
                 }
             });
         }
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+            loadEditor();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
     </script>
 }
 

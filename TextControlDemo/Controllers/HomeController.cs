@@ -130,5 +130,7 @@ namespace TextControlDemo.Controllers
 
             return Convert.ToBase64String(data);
         }
+
+        public IActionResult EditorPartial() => PartialView("_TextEditorPartial");
     }
 }
