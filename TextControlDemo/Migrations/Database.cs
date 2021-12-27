@@ -16,10 +16,10 @@ namespace TextControlDemo.Migrations
         }
         public void CreateDatabase(string dbName)
         {
-            var query = "SELECT 1 FROM pg_database WHERE datname = @name";
+            var query = "SELECT datname FROM pg_database WHERE datname = @name";
             var parameters = new DynamicParameters();
             parameters.Add("name", dbName);
-            using (var connection = _context.CreateConnection())
+            using (var connection = _context.CreateMasterConnection())
             {
                 var records = connection.Query(query, parameters);
                 if (!records.Any())

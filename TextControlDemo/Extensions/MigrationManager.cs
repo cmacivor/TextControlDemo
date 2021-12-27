@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentMigrator.Runner;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,13 @@ namespace TextControlDemo.Extensions
             using (var scope = host.Services.CreateScope())
             {
                 var databaseService = scope.ServiceProvider.GetRequiredService<Database>();
+                var migrationService = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
                 try
                 {
-                    databaseService.CreateDatabase("TextControlDemo2");
+                    databaseService.CreateDatabase("textcontroldemo2");
+
+                    migrationService.ListMigrations();
+                    migrationService.MigrateUp();
                 }
                 catch
                 {

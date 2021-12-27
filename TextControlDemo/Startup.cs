@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,51 @@ namespace TextControlDemo
 
             services.AddSingleton<DapperContext>();
             services.AddSingleton<Database>();
+
+            services.AddLogging(c => c.AddFluentMigratorConsole())
+            .AddFluentMigratorCore()
+            .ConfigureRunner(c => c.AddPostgres()
+                .WithGlobalConnectionString(Configuration.GetConnectionString("NpgsqlConnection"))
+                .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
+
+
+            //var serviceProvider = CreateServices();
+
+            //using (var scope = serviceProvider.CreateScope())
+            //{
+            //    UpdateDatabase(serviceProvider);
+            //}
+        }
+
+        private static void UpdateDatabase(IServiceProvider serviceProvider)
+        {
+            // Instantiate the runner
+            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+
+            // Execute the migrations
+            runner.MigrateUp();
+        }
+
+        private static IServiceProvider CreateServices()
+        {
+            //var assembly = Assembly.GetExecutingAssembly();
+            //var connString = Configuration
+
+            return new ServiceCollection()
+                // Add common FluentMigrator services
+                .AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                    // Add SQLite support to FluentMigrator
+                    .AddPostgres() //.AddSQLite()
+                    // Set the connection string
+                    //.WithGlobalConnectionString("Data Source=test.db")
+                    .WithGlobalConnectionString("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo2;")
+                    // Define the assembly containing the migrations
+                    .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations())
+                // Enable logging to console in the FluentMigrator way
+                .AddLogging(lb => lb.AddFluentMigratorConsole())
+                // Build the service provider
+                .BuildServiceProvider(true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
