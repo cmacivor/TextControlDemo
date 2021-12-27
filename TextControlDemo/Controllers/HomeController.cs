@@ -103,7 +103,9 @@ namespace TextControlDemo.Controllers
                 new TXTextControl.ServerTextControl())
             {
                 tx.Create();
-                tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);                
+                tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
+
+                var trackedChanges = tx.TrackedChanges;
 
                 tx.Save(documentDirectory,
                     TXTextControl.StreamType.WordprocessingML);
@@ -126,6 +128,8 @@ namespace TextControlDemo.Controllers
             {
                 tx.Create();
                 tx.Load(documentDirectory, TXTextControl.StreamType.WordprocessingML);
+
+                var trackedChanges = tx.TrackedChanges;
 
                 tx.Save(out data, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
             }
