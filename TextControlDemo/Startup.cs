@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TextControlDemo.Controllers;
 using TextControlDemo.Migrations;
+using TextControlDemo.Repositories;
 
 namespace TextControlDemo
 {
@@ -32,6 +33,10 @@ namespace TextControlDemo
             services.AddSingleton<DapperContext>();
             services.AddSingleton<Database>();
 
+            services.AddTransient<ITxDocumentRepository, TxDocumentRepository>();
+
+
+            //https://code-maze.com/dapper-migrations-fluentmigrator-aspnetcore/
             services.AddLogging(c => c.AddFluentMigratorConsole())
             .AddFluentMigratorCore()
             .ConfigureRunner(c => c.AddPostgres()
