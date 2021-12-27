@@ -86,7 +86,12 @@ namespace TextControlDemo.Controllers
             var documentDirectory = System.IO.Path.Combine(webRoot, "textcontrol", model.DocumentName);
 
             var guid = Guid.NewGuid();
-
+            //TODO: refactor to repository: https://medium.com/aspnetrun/microservices-using-asp-net-postgresql-dapper-micro-orm-and-docker-container-e9d61a408d2a
+            //TODO: ASP.NET Identity: https://markjohnson.io/articles/asp-net-core-identity-without-entity-framework/
+            //TODO: https://github.com/mark-j/dapper-identity
+            //TODO: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers?view=aspnetcore-3.1
+            //TODO: Tracked Changes demo: https://demos.textcontrol.com/chapter/topic/RichTextEditor/TrackChanges
+            //TODO: TrackedChanges more info: https://docs.textcontrol.com/textcontrol/asp-dotnet/ref.txtextcontrol.trackedchange.class.htm
             using (var connection = new NpgsqlConnection("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo;"))
             {
 
@@ -99,6 +104,8 @@ namespace TextControlDemo.Controllers
             {
                 tx.Create();
                 tx.Load(document, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
+
+                var trackedChanges = tx.TrackedChanges;
 
                 tx.Save(documentDirectory,
                     TXTextControl.StreamType.WordprocessingML);
@@ -122,10 +129,14 @@ namespace TextControlDemo.Controllers
                 tx.Create();
                 tx.Load(documentDirectory, TXTextControl.StreamType.WordprocessingML);
 
+                var trackedChanges = tx.TrackedChanges;
+
                 tx.Save(out data, TXTextControl.BinaryStreamType.InternalUnicodeFormat);
             }
 
             return Convert.ToBase64String(data);
         }
+
+        public IActionResult EditorPartial() => PartialView("_TextEditorPartial");
     }
 }
