@@ -90,6 +90,8 @@ namespace TextControlDemo.Controllers
             //TODO: ASP.NET Identity: https://markjohnson.io/articles/asp-net-core-identity-without-entity-framework/
             //TODO: https://github.com/mark-j/dapper-identity
             //TODO: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers?view=aspnetcore-3.1
+            //TODO: Tracked Changes demo: https://demos.textcontrol.com/chapter/topic/RichTextEditor/TrackChanges
+            //TODO: TrackedChanges more info: https://docs.textcontrol.com/textcontrol/asp-dotnet/ref.txtextcontrol.trackedchange.class.htm
             using (var connection = new NpgsqlConnection("User ID=postgres;Password=Emmett2810$;Host=localhost;Port=5432;Database=TextControlDemo;"))
             {
 
