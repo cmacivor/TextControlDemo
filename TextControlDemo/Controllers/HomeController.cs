@@ -9,6 +9,8 @@ using TextControlDemo.Models;
 using Microsoft.AspNetCore.Hosting;
 using Npgsql;
 using Dapper;
+using TextControlDemo.Repositories;
+using TextControlDemo.Entities;
 
 namespace TextControlDemo.Controllers
 {
@@ -16,11 +18,13 @@ namespace TextControlDemo.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IHostingEnvironment _env;
+        private readonly ITxDocumentRepository _txDocumentRepository;
 
-        public HomeController(ILogger<HomeController> logger, IHostingEnvironment env)
+        public HomeController(ILogger<HomeController> logger, IHostingEnvironment env, ITxDocumentRepository txDocumentRepository)
         {
             _logger = logger;
             _env = env;
+            _txDocumentRepository = txDocumentRepository;
         }
 
         public IActionResult Index()
@@ -98,6 +102,14 @@ namespace TextControlDemo.Controllers
                 string sql = @"INSERT INTO public.""Document"" (""Name"", ""UniqueId"") VALUES(@Name, @UniqueId)";
                 connection.Execute(sql, new { Name = model.DocumentName, UniqueId = guid });
             }
+
+            var txDocument = new TXDocument()
+            {
+                Name = model.DocumentName,
+                UniqueId = guid
+            };
+
+            _txDocumentRepository.Create(txDocument);
 
             using (TXTextControl.ServerTextControl tx =
                 new TXTextControl.ServerTextControl())

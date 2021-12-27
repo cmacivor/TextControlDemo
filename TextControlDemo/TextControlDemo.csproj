@@ -75,6 +75,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.3.1" />
     <PackageReference Include="Npgsql" Version="6.0.2" />
     <PackageReference Include="TXTextControl.Web" Version="29.0.902.500" />
   </ItemGroup>
@@ -98,6 +99,10 @@
     <Reference Include="txtools">
       <HintPath>..\..\..\..\..\..\Program Files\Text Control GmbH\TX Text Control 29.0.NET Server for ASP.NET\Assembly\bin64\txtools.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\" />
   </ItemGroup>
 
 
