@@ -7,6 +7,7 @@
 
 <!-- Trigger/Open The Modal -->
 <button id="myBtn" >Open Modal</button>
+<button id=btnModal onclick="openModal()" >Open modal</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -32,6 +33,7 @@
 </div>
 
 @section Scripts {
+    <script type="text/javascript" src="~/js/modal-loader.js"></script>
     <script type="text/javascript">
 
            function loadEditor() {
@@ -59,47 +61,47 @@
             return view;
         }
 
-        function saveFile() {
-            var fileName = document.getElementById("txtFileName").value;
+        //function saveFile() {
+        //    var fileName = document.getElementById("txtFileName").value;
 
-            SaveToController(fileName);
-        }
+        //    SaveToController(fileName);
+        //}
 
         function loadFile() {
             var fileName = document.getElementById("txtFileName").value;
             LoadFromController(fileName);
         }
 
-        function SaveToController(DocumentName) {
-            TXTextControl.saveDocument(TXTextControl.streamType.InternalUnicodeFormat,
-                function (e) {
-                    console.log(DocumentName)
-                    console.log(e.data)
-                    var serviceURL = "/Home/SaveTemplate";
+        //function SaveToController(DocumentName) {
+        //    TXTextControl.saveDocument(TXTextControl.streamType.InternalUnicodeFormat,
+        //        function (e) {
+        //            console.log(DocumentName)
+        //            console.log(e.data)
+        //            var serviceURL = "/Home/SaveTemplate";
 
-                    $.ajax({
-                        type: "POST",
-                        url: serviceURL,
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            DocumentName: DocumentName,
-                            BinaryDocument: e.data
-                        }),
-                        success: successFunc,
-                        error: errorFunc
-                    });
+        //            $.ajax({
+        //                type: "POST",
+        //                url: serviceURL,
+        //                contentType: 'application/json',
+        //                data: JSON.stringify({
+        //                    DocumentName: DocumentName,
+        //                    BinaryDocument: e.data
+        //                }),
+        //                success: successFunc,
+        //                error: errorFunc
+        //            });
 
-                    function successFunc(data, status) {
-                        var modal = document.getElementById("myModal");
-                        modal.style.display = "none";
-                        alert("Document has been saved successfully.");
-                    }
+        //            function successFunc(data, status) {
+        //                var modal = document.getElementById("myModal");
+        //                modal.style.display = "none";
+        //                alert("Document has been saved successfully.");
+        //            }
 
-                    function errorFunc() {
-                        alert('Error');
-                    }
-                });
-        }
+        //            function errorFunc() {
+        //                alert('Error');
+        //            }
+        //        });
+        //}
 
         // load the document from the controller and load
         // it into the TXTextControl.Web
