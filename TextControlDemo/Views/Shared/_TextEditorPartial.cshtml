@@ -4,4 +4,7 @@
 @using TXTextControl.Web
 @using TXTextControl.Web.MVC
 
-@Html.TXTextControl().TextControl().Render()
+@Html.TXTextControl().TextControl(settings =>
+{
+    settings.Height = "800px";
+}).Render()
